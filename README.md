@@ -1,100 +1,240 @@
 # TemplateX
 
-TemplateX is an MVP browser extension for manager message templates. It opens a searchable template overlay in any editable field, replaces variables, and inserts plain text into `input`, `textarea`, and `contenteditable` editors.
+**TemplateX** — браузерное расширение для быстрой вставки готовых сообщений, шаблонов и ответов в веб-мессенджеры и почту.
 
-## What Works
+Проект сделан для менеджеров, поддержки, продаж, клиентских переписок и любых задач, где нужно быстро отправлять повторяющиеся сообщения без ручного копирования.
 
-- Manifest V3 extension with content script on `<all_urls>`.
-- Trigger text `//` and hotkey `Ctrl+Shift+Space`.
-- Searchable in-page overlay with keyboard navigation.
-- Plain-text insertion into active fields with input/change events for reactive apps.
-- Variable replacement for custom variables and system variables: `{{today}}`, `{{tomorrow}}`, `{{time}}`, `{{manager_name}}`.
-- Options page for profile, general settings, folders, templates, binds, import/export, and payment-link settings.
-- Popup with template count, quick search, open-overlay action, and settings shortcut.
-- Mock local auth and payment-link architecture for a future backend.
+TemplateX работает прямо в браузере и помогает вставлять шаблоны в:
 
-## Install
+- Telegram Web
+- Max Web
+- Яндекс.Почту
+- другие поля ввода на сайтах, где поддерживается обычный `contenteditable` / input
 
-```powershell
-npm install
-```
+---
 
-The project has no runtime npm dependencies. The command is still useful because it creates a lockfile and validates the workspace.
+## Возможности
 
-## Build
+- Быстрая вставка шаблонов через команды.
+- Поиск шаблонов через меню.
+- Поддержка переменных внутри шаблонов.
+- Окно заполнения переменных.
+- Навигация по переменным стрелками вверх / вниз.
+- Поддержка многострочных шаблонов.
+- Импорт и экспорт шаблонов.
+- Локальное хранение настроек в браузере.
+- Отдельная логика для сложного редактора Max Web.
+- Установка как обычное Chrome / Chromium расширение.
 
-```powershell
-npm run build
-```
+---
 
-The build copies the extension source into:
+## Демонстрация
 
-```text
-extension/dist
-```
+### Telegram Web
 
-## Load In The Browser
+![Демонстрация TemplateX в Telegram Web](docs/assets/telegram.jpg)
 
-1. Run `npm run build`.
-2. Open `chrome://extensions`, `browser://extensions`, or the equivalent page in Chrome, Edge, or Yandex Browser.
-3. Enable developer mode.
-4. Choose "Load unpacked".
-5. Select `extension/dist`.
+---
 
-For development you can also load the `extension` folder directly.
+### Max Web
 
-## Usage
+![Демонстрация TemplateX в Max Web](docs/assets/max.jpg)
 
-Put the cursor in a text field and type `//`, or press `Ctrl+Shift+Space`. Choose a template from the overlay with mouse, arrows, and Enter. If the template has variables, TemplateX asks for values before insertion.
+---
 
-The extension stores all data in `chrome.storage.local`. Templates are inserted as plain text; HTML from templates is not executed.
+### Яндекс.Почта
 
-## Templates
+![Демонстрация TemplateX в Яндекс.Почте](docs/assets/mail.jpg)
 
-Each template has:
+---
 
-- `title`
-- `shortcut`
-- `folderId`
-- `body`
-- `tags`
+### Окно переменных
 
-Variables use double braces:
+![Окно переменных TemplateX](docs/assets/variables.jpg)
+
+Пример шаблона с переменными:
 
 ```text
-Здравствуйте, {{client_name}}!
-К оплате: {{amount}} руб.
-Ссылка: {{payment_link}}
+Чтобы я могла всё правильно рассчитать и подсказать точную стоимость, уточните, пожалуйста:
+
+1. {detail_1}
+2. {detail_2}
+3. {detail_3}
 ```
 
-Empty custom variables are replaced with an empty string.
+После выбора такого шаблона TemplateX откроет окно, где можно заполнить значения переменных.
 
-## Import And Export
+---
 
-The options page exports JSON with:
+## Установка
 
-- `version`
-- `exportedAt`
-- `settings`
-- `folders`
-- `templates`
+### Вариант 1. Скачать готовый релиз
 
-Import supports replacing all data or merging folders/templates by id.
-
-## Payments Backend
-
-The MVP supports `manual`, `tbank`, `yookassa`, and `cloudpayments` providers at the settings level.
-
-For real providers, TemplateX calls:
+1. Откройте страницу релизов:
 
 ```text
-POST {backendApiUrl}/api/payments/create-link
+https://github.com/xerlovemate/TemplateX/releases
 ```
 
-Production payment links must be created by a backend. Bank acquiring secrets must never be stored inside the extension.
+2. Скачайте архив последней версии:
 
-## Current Limits
+```text
+TemplateX-v1.0.0.zip
+```
 
-- Auth is local mock auth.
-- Real payment providers require a backend.
-- Complex editors vary by site; the adapter uses selection/range insertion, native value setters, input/change events, and clipboard fallback where direct insertion is blocked.
+3. Распакуйте архив в любую удобную папку.
+
+4. Откройте в браузере страницу расширений:
+
+```text
+chrome://extensions/
+edge://extensions/
+```
+
+5. Включите **Режим разработчика**.
+
+6. Нажмите **Загрузить распакованное расширение**.
+
+7. Выберите распакованную папку TemplateX.
+
+Готово. Расширение появится в браузере и будет готово к работе.
+
+---
+
+## Как пользоваться
+
+### Telegram Web
+
+В поле сообщения можно вводить быстрые команды:
+
+```text
+/прив
+/детали
+/оплата
+```
+
+Также можно открыть меню поиска шаблонов:
+
+```text
+//
+```
+
+После выбора шаблона текст автоматически вставится в поле сообщения.
+
+---
+
+### Max Web
+
+Редактор Max Web устроен сложнее, чем обычные поля ввода, поэтому для него используется отдельный режим.
+
+В Max нажмите:
+
+```text
+/
+```
+
+Откроется меню TemplateX. Начните вводить название шаблона:
+
+```text
+прив
+детали
+оплата
+```
+
+Выберите нужный шаблон — текст вставится в сообщение.
+
+Важно: в Max не нужно писать `/прив` прямо в поле до конца. Достаточно нажать `/`, а дальше вводить название шаблона уже в меню TemplateX.
+
+---
+
+### Яндекс.Почта
+
+В теле письма можно использовать команды:
+
+```text
+/прив
+/детали
+/оплата
+```
+
+---
+
+## Шаблоны с переменными
+
+TemplateX поддерживает переменные в шаблонах.
+
+Пример:
+
+```text
+Здравствуйте! Подскажите, пожалуйста:
+
+1. {detail_1}
+2. {detail_2}
+3. {detail_3}
+```
+
+При выборе шаблона появится окно заполнения переменных.
+
+Управление в окне переменных:
+
+- `ArrowDown` — перейти к следующему полю.
+- `ArrowUp` — перейти к предыдущему полю.
+- `Tab` — стандартное переключение фокуса.
+- `Esc` — закрыть окно.
+- `Вставить` — вставить готовый текст.
+
+---
+
+## Импорт и экспорт шаблонов
+
+TemplateX хранит шаблоны локально в браузере.
+
+В настройках расширения можно:
+
+- добавить новый шаблон;
+- изменить существующий шаблон;
+- удалить шаблон;
+- экспортировать шаблоны в файл;
+- импортировать шаблоны из файла.
+
+Это удобно, если нужно перенести настройки на другой компьютер или поделиться набором шаблонов с коллегами.
+
+---
+
+## FAQ
+
+### Почему в Max Web не используются команды `/прив` прямо в поле?
+
+Max Web использует сложный редактор на базе Lexical/Svelte. Он плохо переносит программную замену уже введённого текста. Поэтому TemplateX перехватывает `/` до попадания в поле и открывает собственное меню выбора шаблона. Это стабильнее и не ломает сообщение.
+
+### Где хранятся шаблоны?
+
+Шаблоны хранятся локально в браузере через storage расширения.
+
+### Можно ли использовать TemplateX в других браузерах?
+
+Расширение рассчитано на Chrome и Chromium-браузеры. Например, Google Chrome, Edge, Brave, Яндекс Браузер.
+
+---
+
+## Планы
+
+- Синхронизация шаблонов между устройствами.
+- Командная работа для нескольких менеджеров.
+- Роли и общие наборы шаблонов.
+- Backend для генерации платёжных ссылок.
+- Интеграции с CRM и платёжными системами.
+
+---
+
+## Лицензия
+
+MIT License.
+
+---
+
+## Автор
+
+Проект: **TemplateX**
+
+GitHub: [@xerlovemate](https://github.com/xerlovemate)
