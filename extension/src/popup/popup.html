@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TemplateX</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup">
+      <header class="header">
+        <div>
+          <h1>TemplateX</h1>
+          <p data-auth-status>Проверка статуса</p>
+        </div>
+        <button class="icon-button" type="button" data-options title="Настройки">⚙</button>
+      </header>
+
+      <section class="summary" aria-label="Сводка">
+        <div>
+          <strong data-template-count>0</strong>
+          <span>шаблонов</span>
+        </div>
+        <p>Локальные шаблоны доступны на текущей странице</p>
+      </section>
+
+      <button class="primary-action" type="button" data-open-overlay>Открыть шаблоны на странице</button>
+
+      <label class="search-label">
+        <span>Быстрый поиск</span>
+        <input data-search type="search" placeholder="Название или shortcut" autocomplete="off" />
+      </label>
+
+      <div class="list" data-list></div>
+      <p class="status" data-status></p>
+    </main>
+
+    <script src="../shared/types.js"></script>
+    <script src="../shared/templates.js"></script>
+    <script src="../shared/storage.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

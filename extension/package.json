@@ -1,0 +1,25 @@
+{
+  "name": "templatex-extension",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TemplateX browser extension MVP for manager message templates.",
+  "type": "module",
+  "scripts": {
+    "clean": "node scripts/clean.mjs",
+    "build": "node scripts/build.mjs",
+    "test:stage6": "node scripts/test-stage6.mjs",
+    "test:stage8": "node scripts/test-stage8.mjs",
+    "test:stage9": "node scripts/test-stage9.mjs",
+    "test:stage10": "node scripts/test-stage10.mjs",
+    "test:stage11": "node scripts/test-stage11.mjs",
+    "test:stage13": "node scripts/test-stage13.mjs",
+    "test:stage14": "node scripts/test-stage14.mjs",
+    "test:stage15": "node scripts/test-stage15.mjs"
+  },
+  "keywords": [
+    "browser-extension",
+    "templates",
+    "manifest-v3"
+  ],
+  "license": "UNLICENSED"
+}

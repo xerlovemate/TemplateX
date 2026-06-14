@@ -1,0 +1,12 @@
+{
+  "name": "templatex",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TemplateX browser extension workspace.",
+  "type": "module",
+  "scripts": {
+    "build": "npm run build --prefix extension",
+    "clean": "npm run clean --prefix extension"
+  },
+  "license": "UNLICENSED"
+}

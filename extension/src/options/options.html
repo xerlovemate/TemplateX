@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TemplateX settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>TemplateX</h1>
+        <p>Настройки шаблонов сообщений</p>
+      </div>
+      <div class="topbar-actions">
+        <span class="save-status" data-status></span>
+        <button class="button primary" type="button" data-save-settings>Сохранить настройки</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="section" aria-labelledby="profile-title">
+        <div class="section-head">
+          <h2 id="profile-title">Профиль</h2>
+          <span data-auth-status>Локальный режим</span>
+        </div>
+        <div class="grid two">
+          <label>
+            Имя менеджера
+            <input data-setting="managerName" type="text" autocomplete="name" />
+          </label>
+          <label>
+            Email
+            <input data-setting="email" type="email" autocomplete="email" />
+          </label>
+          <label class="wide">
+            Backend API URL
+            <input data-setting="backendApiUrl" type="url" placeholder="https://api.example.com" />
+          </label>
+        </div>
+        <div class="actions-row">
+          <button class="button" type="button" data-login>Войти</button>
+          <button class="button danger" type="button" data-logout>Выйти</button>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="general-title">
+        <div class="section-head">
+          <h2 id="general-title">Общие</h2>
+        </div>
+        <div class="grid three">
+          <label>
+            Trigger
+            <input data-setting="triggerText" type="text" />
+          </label>
+          <label>
+            Hotkey
+            <input data-setting="hotkey" type="text" />
+          </label>
+          <label>
+            Язык
+            <select data-setting="language">
+              <option value="ru">ru</option>
+            </select>
+          </label>
+          <label class="check">
+            <input data-setting="enableSlashTrigger" type="checkbox" />
+            Включить trigger
+          </label>
+          <label class="check">
+            <input data-setting="enableShortcutExpansion" type="checkbox" />
+            Раскрывать shortcut
+          </label>
+          <label class="check">
+            <input data-setting="autoCloseAfterInsert" type="checkbox" />
+            Автозакрытие после вставки
+          </label>
+          <label class="check">
+            <input data-setting="fallbackToClipboard" type="checkbox" />
+            Clipboard fallback
+          </label>
+          <label class="check">
+            <input data-setting="showPreview" type="checkbox" />
+            Показывать превью
+          </label>
+          <label class="check">
+            <input data-setting="debugMode" type="checkbox" />
+            Debug console
+          </label>
+        </div>
+      </section>
+
+      <section class="section templates-section" aria-labelledby="templates-title">
+        <div class="section-head">
+          <h2 id="templates-title">Шаблоны</h2>
+          <div class="compact-actions">
+            <button class="button" type="button" data-new-template>Новый шаблон</button>
+            <button class="button primary" type="button" data-save-template>Сохранить шаблон</button>
+          </div>
+        </div>
+
+        <div class="templates-grid">
+          <aside class="pane">
+            <div class="pane-head">
+              <h3>Папки</h3>
+              <button class="button small" type="button" data-add-folder>Создать</button>
+            </div>
+            <div class="list" data-folder-list></div>
+            <div class="actions-row compact">
+              <button class="button small" type="button" data-rename-folder>Переименовать</button>
+              <button class="button small danger" type="button" data-delete-folder>Удалить</button>
+            </div>
+          </aside>
+
+          <aside class="pane">
+            <div class="pane-head">
+              <h3>Список</h3>
+              <span data-template-total>0</span>
+            </div>
+            <input class="filter" data-template-filter type="search" placeholder="Фильтр" />
+            <div class="list template-list" data-template-list></div>
+          </aside>
+
+          <form class="editor" data-template-form>
+            <div class="grid two">
+              <label>
+                Название
+                <input data-template-field="title" type="text" required />
+              </label>
+              <label>
+                Shortcut
+                <input data-template-field="shortcut" type="text" placeholder="/оплата" />
+              </label>
+              <label>
+                Папка
+                <select data-template-field="folderId"></select>
+              </label>
+              <label>
+                Tags
+                <input data-template-field="tags" type="text" placeholder="оплата, клиент" />
+              </label>
+            </div>
+            <label class="body-field">
+              Текст шаблона
+              <textarea data-template-field="body" rows="12" required></textarea>
+            </label>
+            <div class="hint">Переменные: {{name}}, {{amount}}, {{payment_link}}, {{today}}, {{tomorrow}}, {{time}}, {{manager_name}}</div>
+            <div class="preview">
+              <strong>Предпросмотр</strong>
+              <pre data-preview></pre>
+            </div>
+            <div class="actions-row">
+              <button class="button danger" type="button" data-delete-template>Удалить шаблон</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="binds-title">
+        <div class="section-head">
+          <h2 id="binds-title">Бинды</h2>
+          <span data-duplicates>Дублей нет</span>
+        </div>
+        <div class="binds" data-binds></div>
+      </section>
+
+      <section class="section" aria-labelledby="import-title">
+        <div class="section-head">
+          <h2 id="import-title">Импорт/экспорт</h2>
+        </div>
+        <div class="actions-row">
+          <button class="button" type="button" data-export>Экспортировать настройки в JSON</button>
+          <label class="file-button">
+            Импортировать из JSON
+            <input data-import-file type="file" accept="application/json" />
+          </label>
+          <select data-import-mode>
+            <option value="replace">Заменить все</option>
+            <option value="merge">Объединить</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="payments-title">
+        <div class="section-head">
+          <h2 id="payments-title">Платежи</h2>
+          <span>Секреты банка нельзя хранить в расширении</span>
+        </div>
+        <div class="grid three">
+          <label>
+            Provider
+            <select data-setting="paymentProvider">
+              <option value="manual">manual</option>
+              <option value="tbank">tbank</option>
+              <option value="yookassa">yookassa</option>
+              <option value="cloudpayments">cloudpayments</option>
+            </select>
+          </label>
+          <label class="check">
+            <input data-setting="paymentDevMode" type="checkbox" />
+            Dev/mock mode
+          </label>
+          <label>
+            Amount
+            <input data-payment-test="amount" type="number" min="0" step="1" value="3500" />
+          </label>
+          <label class="wide">
+            Description
+            <input data-payment-test="description" type="text" value="Тестовый заказ" />
+          </label>
+        </div>
+        <div class="actions-row">
+          <button class="button" type="button" data-test-payment>Создать тестовую ссылку</button>
+          <span class="test-result" data-payment-result></span>
+        </div>
+      </section>
+    </main>
+
+    <script src="../shared/types.js"></script>
+    <script src="../shared/templates.js"></script>
+    <script src="../shared/shortcuts.js"></script>
+    <script src="../shared/storage.js"></script>
+    <script src="../shared/import-export.js"></script>
+    <script src="../shared/auth.js"></script>
+    <script src="../shared/payments.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

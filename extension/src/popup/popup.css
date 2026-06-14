@@ -1,0 +1,227 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #111827;
+  background: #f3f6fb;
+  width: 420px;
+  min-width: 420px;
+  max-width: 420px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 420px;
+  min-width: 420px;
+  max-width: 420px;
+  margin: 0;
+  overflow-x: hidden;
+  background: #f3f6fb;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.popup {
+  width: 100%;
+  max-width: 100%;
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  overflow-x: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+h1 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 19px;
+  line-height: 25px;
+}
+
+p {
+  margin: 0;
+}
+
+.header p,
+.status,
+.summary span,
+.search-label span {
+  color: #64748b;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.icon-button {
+  width: 36px;
+  height: 36px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid #dbe3ef;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+.icon-button:hover {
+  background: #eef5ff;
+  border-color: #bfdbfe;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #dbe3ef;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  padding: 12px;
+}
+
+.summary strong {
+  color: #175cd3;
+  font-size: 25px;
+  line-height: 28px;
+}
+
+.summary div {
+  display: grid;
+  gap: 1px;
+}
+
+.summary p {
+  color: #475569;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.primary-action {
+  min-height: 42px;
+  border: 1px solid #175cd3;
+  border-radius: 12px;
+  background: #175cd3;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 9px 12px;
+  box-shadow: 0 10px 24px rgba(23, 92, 211, 0.2);
+}
+
+.primary-action:hover {
+  background: #104db8;
+}
+
+.search-label {
+  display: grid;
+  gap: 6px;
+}
+
+.search-label input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d7dde8;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #0f172a;
+  outline: none;
+  padding: 10px 11px;
+}
+
+.search-label input:focus {
+  border-color: #175cd3;
+  box-shadow: 0 0 0 3px rgba(23, 92, 211, 0.14);
+}
+
+.list {
+  display: grid;
+  gap: 8px;
+  max-height: 280px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 2px;
+  scrollbar-width: thin;
+}
+
+.template-button {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7px;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #dbe3ef;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #111827;
+  cursor: pointer;
+  padding: 10px 11px;
+  text-align: left;
+  overflow: hidden;
+  word-break: break-word;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.template-button:hover {
+  border-color: #bfdbfe;
+  background: #f8fbff;
+}
+
+.template-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 8px;
+}
+
+.template-title {
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+  overflow-wrap: anywhere;
+}
+
+.template-preview {
+  display: -webkit-box;
+  overflow: hidden;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 16px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow-wrap: anywhere;
+}
+
+.shortcut {
+  justify-self: end;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #eef5ff;
+  color: #175cd3;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 7px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status {
+  min-height: 16px;
+}

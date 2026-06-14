@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./overlay-frame.css" />
+    <title>TemplateX</title>
+  </head>
+  <body>
+    <section class="panel" data-panel hidden>
+      <header class="topbar">
+        <div class="brand">
+          <strong>TemplateX</strong>
+          <span data-count>Шаблоны</span>
+        </div>
+        <div class="actions">
+          <button class="icon-button" type="button" data-options title="Настройки">⚙</button>
+          <button class="icon-button" type="button" data-close title="Закрыть">×</button>
+        </div>
+      </header>
+      <div class="search-wrap">
+        <input class="search" data-search type="search" placeholder="Найти шаблон" autocomplete="off" />
+      </div>
+      <div class="list" data-list></div>
+      <div class="empty" data-empty hidden>Ничего не найдено</div>
+      <footer class="footer">
+        <span data-footer-hint>Esc - закрыть</span>
+        <button type="button" data-footer-options>Настройки</button>
+      </footer>
+    </section>
+
+    <section class="variable-panel" data-variables hidden>
+      <form data-variable-form>
+        <header class="variable-header">
+          <div>
+            <strong>Заполните переменные</strong>
+            <span data-variable-title></span>
+          </div>
+          <button class="icon-button" type="button" data-variable-close title="Закрыть">×</button>
+        </header>
+        <div class="fields" data-fields></div>
+        <footer class="variable-actions">
+          <button type="button" data-variable-cancel>Отмена</button>
+          <button class="primary" type="submit" data-variable-submit>Вставить</button>
+        </footer>
+      </form>
+    </section>
+
+    <script src="../shared/types.js"></script>
+    <script src="../shared/templates.js"></script>
+    <script src="./overlay-frame.js"></script>
+  </body>
+</html>
